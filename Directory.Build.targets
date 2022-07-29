@@ -1,0 +1,16 @@
+<!--
+Things in this file is run AFTER loading of the project
+The values will overwrite the values of the project when specified
+
+Note: The values might not be reflected in the UI properly
+Sometimes, the field must exist either in the prop file or project itself before the value can be overwritten.
+You can add a the value to the prop file or project file to workaround that
+-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup>
+      <NeutralLanguage>en-US</NeutralLanguage>
+      <LangVersion>latest</LangVersion>
+      <EnableNETAnalyzers>true</EnableNETAnalyzers>
+   </PropertyGroup>
+</Project>

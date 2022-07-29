@@ -1,2 +1,7 @@
-# Common-Services
-Collection of helpful platform and feature agnostic functionality to aid development
+# Common services
+A collection of helper projects that is platform and feature agnostic to aid development.
+<br/>
+
+ Collection:
+- [Boot strapper](doc/bootstrap.md)
+- [MVVM Helpers](doc/mvvm.md)
