@@ -21,12 +21,12 @@ internal class StartIntercept: IBootstrap
         Action<object, UnhandledExceptionEventArgs> handleException) =>
         _bootstrap.WithAppLevelExceptionHandling(handleException);
 
-    public void Start(Func<IResolver, Task> executionAction = null)
+    public void Start<T>(Func<T, Task> executionAction = null)
     {
-        _bootstrap.Start(resolver =>
+        _bootstrap.Start<IResolver>(resolver =>
         {
             _preLoads.Execute(resolver);
-            executionAction?.Invoke(resolver);
+            executionAction?.Invoke(resolver.Resolve<T>());
             return Task.CompletedTask;
         });
     }

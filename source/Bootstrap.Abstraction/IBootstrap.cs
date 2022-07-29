@@ -32,5 +32,5 @@ public interface IBootstrap
     /// Register all modules and Start the application
     /// </summary>
     /// <param name="executionAction"></param>
-    void Start(Func<IResolver, Task> executionAction = null);
+    void Start<T>(Func<T, Task> executionAction = null);
 }

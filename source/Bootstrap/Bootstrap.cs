@@ -36,7 +36,7 @@ internal class Bootstrap : IBootstrap
         return this;
     }
 
-    public void Start(Func<IResolver, Task> executionAction = null)
+    public void Start<T>(Func<T, Task> executionAction = null)
     {
         Parallel.ForEach(_container.ResolveMany<IModule>(), module =>
         {
@@ -44,6 +44,6 @@ internal class Bootstrap : IBootstrap
             module.Load(_container, serviceCollection);
             _container.Populate(serviceCollection);
         });
-        executionAction?.Invoke(_container);
+        executionAction?.Invoke(_container.Resolve<T>());
     }
 }

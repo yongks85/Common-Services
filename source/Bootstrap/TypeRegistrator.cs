@@ -9,8 +9,7 @@ internal class TypeRegistrator : ITypeRegistrator
 {
     private readonly IContainer _container;
     private readonly Type[] _allTypes;
-    private readonly PreLoads _executions = new();
-
+    
     internal TypeRegistrator(IContainer container, Type[] allTypes)
     {
         _container = container;
@@ -26,7 +25,7 @@ internal class TypeRegistrator : ITypeRegistrator
 
         foreach (var module in modules)
         {
-            _container.Register(typeof(IModule), module, reuse);
+            _container.Register(typeof(TType), module, reuse);
             _container.Register(module, reuse);
         }
         return this;
