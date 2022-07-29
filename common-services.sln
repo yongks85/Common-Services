@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap.Interception", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap.MVVM", "source\Bootstrap.MVVM\Bootstrap.MVVM.csproj", "{59082777-4FA0-4CAF-B715-18A61EA2BA70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap.OnStartService", "source\Bootstrap.OnStartService\Bootstrap.OnStartService.csproj", "{019FBFB0-067F-4667-9E1D-B8127E6897C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{59082777-4FA0-4CAF-B715-18A61EA2BA70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59082777-4FA0-4CAF-B715-18A61EA2BA70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59082777-4FA0-4CAF-B715-18A61EA2BA70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{019FBFB0-067F-4667-9E1D-B8127E6897C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{019FBFB0-067F-4667-9E1D-B8127E6897C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{019FBFB0-067F-4667-9E1D-B8127E6897C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{019FBFB0-067F-4667-9E1D-B8127E6897C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
