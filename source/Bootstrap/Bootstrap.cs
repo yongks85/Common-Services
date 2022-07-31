@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Bootstrap.Abstraction;
 using DryIoc;
-using DryIoc.Microsoft.DependencyInjection;
 
 namespace Bootstrap;
 
@@ -15,22 +14,23 @@ internal class Bootstrap : IBootstrap
         _container = container;
     }
 
-    public IBootstrap WithRegistration(Action<IRegistrator> registration)
+    public IBootstrap Register(Action<IRegistrator> registration)
     {
         registration(_container);
         return this;
     }
 
-    public IBootstrap WithAssemblyScanning<T>(Action<ITypeRegistrator> includeType = null) where T : IAssemblyMarker
+    public IBootstrap ScanAssembly<T>(Action<ITypeRegistrator> includeType = null) where T : IAssemblyMarker
     {
         var types = typeof(T).Assembly.GetTypes();
         var typeInclude = new TypeRegistrator(_container, types);
         typeInclude.Include<IModule>();
+
         includeType?.Invoke(typeInclude);
         return this;
     }
         
-    public IBootstrap WithAppLevelExceptionHandling(Action<object, UnhandledExceptionEventArgs> handleException)
+    public IBootstrap HookAppLevelExceptionHandling(Action<object, UnhandledExceptionEventArgs> handleException)
     {
         AppDomain.CurrentDomain.UnhandledException += (sender, arg) => handleException(sender, arg);
         return this;
@@ -40,9 +40,7 @@ internal class Bootstrap : IBootstrap
     {
         Parallel.ForEach(_container.ResolveMany<IModule>(), module =>
         {
-            var serviceCollection = new ServiceCollection();
-            module.Load(_container, serviceCollection);
-            _container.Populate(serviceCollection);
+            module.Register(_container);
         });
         executionAction?.Invoke(_container.Resolve<T>());
     }

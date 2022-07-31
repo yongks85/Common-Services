@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Bootstrap;
+namespace Bootstrap.MsDi;
 
 /// <summary>
 /// Replacement for ServiceCollection to decouple from Microsoft DependencyInjection
 /// </summary>
 internal sealed class ServiceCollection : IServiceCollection
 {
-    private readonly List<ServiceDescriptor> _descriptors = new List<ServiceDescriptor>();
+    private readonly List<ServiceDescriptor> _descriptors = new();
 
     public int Count => _descriptors.Count;
 

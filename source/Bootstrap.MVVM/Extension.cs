@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Bootstrap.Abstraction;
@@ -13,44 +12,28 @@ public static class Extension
     /// <summary>
     /// Add Dispatcher exception handling
     /// </summary>
-    public static IBootstrap WithDispatcherExceptionHandling(this IBootstrap bootstrap,
+    public static IBootstrap HookDispatcherExceptionHandling(this IBootstrap bootstrap,
         Action<object, DispatcherUnhandledExceptionEventArgs> handleException)
     {
         Application.Current.DispatcherUnhandledException += (sender, args) => handleException(sender, args);
         return bootstrap;
     }
-
-    /// <summary>
-    /// Add MVVM registration to IoC
-    /// </summary>
+    
     public static IBootstrap WithMvvm(this IBootstrap bootstrap)
     {
-        bootstrap.WithRegistration(reg => reg.Register<IMessenger, WeakReferenceMessenger>());
-        bootstrap.WithRegistration(reg => reg.Register<ViewModelLocator>(Reuse.Singleton));
-        return bootstrap;
+        var decorator = new BootstrapWithMvvm(bootstrap);
+        decorator.Register(reg => reg.Register<IMessenger, WeakReferenceMessenger>());
+        decorator.Register(reg => reg.Register<ViewModelLocator>(Reuse.Singleton));
+        return decorator;
     }
-
-    /// <summary>
-    /// Add MVVM registration to IoC
-    /// </summary>
-    public static IBootstrap StartMvvm<T>(this IBootstrap bootstrap, Func<T, Task>? executionAction = null)
-    {
-        bootstrap.Start<IResolver>(resolver =>
-        {
-            Application.Current.Resources.Add("ViewModelLocator", resolver.Resolve<ViewModelLocator>());
-            executionAction?.Invoke(resolver.Resolve<T>());
-            return Task.CompletedTask;
-        });
-
-        return bootstrap;
-    }
-
+    
     /// <summary>
     /// Register views to IoC
     /// </summary>
     public static ITypeRegistrator IncludeViews(this ITypeRegistrator registrator, IReuse? reuse = null)
     {
-        registrator.Include<IView>(reuse);
+        registrator.ObjectLifeCycle = reuse;
+        registrator.Include<IView>();
         return registrator;
     }
 
@@ -59,7 +42,8 @@ public static class Extension
     /// </summary>
     public static ITypeRegistrator IncludeViewModels(this ITypeRegistrator registrator, IReuse? reuse = null)
     {
-        registrator.Include<IViewModel>(reuse);
+        registrator.ObjectLifeCycle = reuse;
+        registrator.Include<IViewModel>();
         return registrator;
     }
 

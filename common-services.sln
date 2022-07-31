@@ -5,15 +5,19 @@ VisualStudioVersion = 17.2.32210.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootstrap", "source\Bootstrap\Bootstrap.csproj", "{E7112C73-ABAA-4266-B710-361F70463EB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap.Abstraction", "source\Bootstrap.Abstraction\Bootstrap.Abstraction.csproj", "{C094B4F9-179C-49AE-989C-68E6A5CEFE19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootstrap.Abstraction", "source\Bootstrap.Abstraction\Bootstrap.Abstraction.csproj", "{C094B4F9-179C-49AE-989C-68E6A5CEFE19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap.Serilog", "source\Bootstrap.Serilog\Bootstrap.Serilog.csproj", "{A8E3D0A8-892F-4C0F-A1DA-9E965C83A156}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootstrap.Serilog", "source\Bootstrap.Serilog\Bootstrap.Serilog.csproj", "{A8E3D0A8-892F-4C0F-A1DA-9E965C83A156}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap.Interception", "source\Bootstrap.Interception\Bootstrap.Interception.csproj", "{86028E5C-3C83-46FD-AA30-C351A991DB97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootstrap.Interception", "source\Bootstrap.Interception\Bootstrap.Interception.csproj", "{86028E5C-3C83-46FD-AA30-C351A991DB97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap.MVVM", "source\Bootstrap.MVVM\Bootstrap.MVVM.csproj", "{59082777-4FA0-4CAF-B715-18A61EA2BA70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootstrap.MVVM", "source\Bootstrap.MVVM\Bootstrap.MVVM.csproj", "{59082777-4FA0-4CAF-B715-18A61EA2BA70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap.OnStartService", "source\Bootstrap.OnStartService\Bootstrap.OnStartService.csproj", "{019FBFB0-067F-4667-9E1D-B8127E6897C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootstrap.OnStartService", "source\Bootstrap.OnStartService\Bootstrap.OnStartService.csproj", "{019FBFB0-067F-4667-9E1D-B8127E6897C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootstrap.Test", "test\Bootstrap.Test\Bootstrap.Test.csproj", "{5ED229F8-7139-4349-828E-B788109D0FB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap.MsDi", "source\Bootstrap.MsDi\Bootstrap.MsDi.csproj", "{F47C12DD-1589-4D23-AEFA-630794756406}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{019FBFB0-067F-4667-9E1D-B8127E6897C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{019FBFB0-067F-4667-9E1D-B8127E6897C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{019FBFB0-067F-4667-9E1D-B8127E6897C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ED229F8-7139-4349-828E-B788109D0FB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ED229F8-7139-4349-828E-B788109D0FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ED229F8-7139-4349-828E-B788109D0FB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ED229F8-7139-4349-828E-B788109D0FB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F47C12DD-1589-4D23-AEFA-630794756406}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F47C12DD-1589-4D23-AEFA-630794756406}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F47C12DD-1589-4D23-AEFA-630794756406}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F47C12DD-1589-4D23-AEFA-630794756406}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

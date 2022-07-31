@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 using DryIoc;
 
 namespace Bootstrap.Abstraction;
@@ -10,9 +12,28 @@ namespace Bootstrap.Abstraction;
 public interface ITypeRegistrator
 {
     /// <summary>
-    /// Add type to register from assembly scanning
+    /// Only register types that is public classes, default is false
     /// </summary>
-    /// <param name="addExecution">execution parameters</param>
-    ITypeRegistrator Include<TType>(IReuse reuse = null); 
-        
+    bool PublicClassesOnly { set; }
+
+    /// <summary>
+    /// include registeration of concrete class type. does not include inheriting types
+    /// </summary>
+    bool IncludeRegistrationOfClassType { set; }
+
+    /// <summary>
+    /// object life cycle, default is transient
+    /// </summary>
+    IReuse ObjectLifeCycle { set; }
+
+    /// <summary>
+    /// Subtype of register if the classes is also the specified type.
+    /// </summary>
+    IList<Type> SubTypesToRegister { get; }
+
+    /// <summary>
+    /// Add type to register from assembly scanning. MUST BE NON ABSTRACT CLASS!
+    /// </summary>
+    ITypeRegistrator Include<T>();
+
 }

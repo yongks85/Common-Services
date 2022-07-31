@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bootstrap.Abstraction;
 using DryIoc;
@@ -16,17 +17,31 @@ internal class TypeRegistrator : ITypeRegistrator
         _allTypes = allTypes;
     }
 
-    public ITypeRegistrator Include<TType>(IReuse reuse = null) 
+    public bool PublicClassesOnly { set; get; }
+    
+    public bool IncludeRegistrationOfClassType { set; get; }
+    
+    public IReuse ObjectLifeCycle { set; get; }
+
+    public IList<Type> SubTypesToRegister { get; } = new List<Type>();
+
+    public ITypeRegistrator Include<T>()
     {
-        var modules = _allTypes.Where(type => typeof(TType).IsAssignableFrom(type)
-                                              && type.IsPublic
-                                              && type.IsClass
-                                              && !type.IsAbstract);
+        var modules = _allTypes.Where(type => typeof(T).IsAssignableFrom(type)
+                                            && type.IsClass
+                                            && !type.IsAbstract);
+
+        if (PublicClassesOnly) modules = modules.Where(type => type.IsPublic);
 
         foreach (var module in modules)
         {
-            _container.Register(typeof(TType), module, reuse);
-            _container.Register(module, reuse);
+            _container.Register(typeof(T), module, ObjectLifeCycle);
+            if (IncludeRegistrationOfClassType) _container.Register(module, module, ObjectLifeCycle);
+            foreach(var subType in SubTypesToRegister.Where(st=> module.IsAssignableFrom(st)))
+            {
+                _container.Register(subType, module, ObjectLifeCycle);
+            }
+
         }
         return this;
     }

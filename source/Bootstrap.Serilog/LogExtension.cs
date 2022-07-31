@@ -19,7 +19,7 @@ public static class LogExtension
         var config = new LoggerConfiguration();
         setupLogging(config);
         Log.Logger = config.CreateLogger();
-        bootstrap.WithRegistration(register => register.Register<LogInterceptor>());
+        bootstrap.Register(register => register.Register<LogInterceptor>());
         return bootstrap;
     }
 

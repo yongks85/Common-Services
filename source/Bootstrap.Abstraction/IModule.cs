@@ -1,6 +1,4 @@
 ﻿using DryIoc;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace Bootstrap.Abstraction;
 
 /// <summary>
@@ -12,6 +10,5 @@ public interface IModule
     /// Registration of classes
     /// </summary>
     /// <param name="registrator">Register using DryIoc</param>
-    /// <param name="services">Register using Microsoft Dependency injection</param>
-    void Load(IRegistrator registrator, IServiceCollection services);
+    void Register(IRegistrator registrator);
 }
