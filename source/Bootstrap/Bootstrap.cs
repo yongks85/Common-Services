@@ -36,7 +36,16 @@ internal class Bootstrap : IBootstrap
         return this;
     }
 
-    public void Start<T>(Func<T, Task> executionAction = null)
+    public void StartAsync<T>(Func<T, Task> executionAction = null)
+    {
+        Parallel.ForEach(_container.ResolveMany<IModule>(), module =>
+        {
+            module.Register(_container);
+        });
+        executionAction?.Invoke(_container.Resolve<T>());
+    }
+    
+    public void Start<T>(Action<T>? executionAction = null)
     {
         Parallel.ForEach(_container.ResolveMany<IModule>(), module =>
         {

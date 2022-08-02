@@ -1,8 +1,13 @@
 ﻿using Bootstrap.Abstraction;
-
 using DryIoc;
 
-namespace Bootstrap.Test.Mocks;
+namespace Bootstrap.Test;
+
+public interface IMockAssemblyMarker : IAssemblyMarker { }
+
+public interface IMockClass { }
+
+public interface IAutoRegType { }
 
 internal class MockClass: IMockClass { }
 

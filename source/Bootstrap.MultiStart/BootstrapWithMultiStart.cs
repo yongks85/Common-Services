@@ -26,10 +26,21 @@ internal class BootstrapWithMultiStart: IBootstrap
         Action<object, UnhandledExceptionEventArgs> handleException) =>
         _bootstrap.HookAppLevelExceptionHandling(handleException);
 
-    public void Start<T>(Func<T, Task> executionAction = null)
+    public void Start<T>(Action<T>? executionAction = null)
     {
         //todo: Initialize all onStartservice
-        _bootstrap.Start<IResolver>(resolver =>
+        _bootstrap.StartAsync<IResolver>(resolver =>
+        {
+            var services = resolver.ResolveMany<IOnStartService>();
+            Parallel.ForEach(services, service => service.Initialize());
+            executionAction?.Invoke(resolver.Resolve<T>());
+            return Task.CompletedTask;
+        });
+    }
+    public void StartAsync<T>(Func<T, Task> executionAction = null)
+    {
+        //todo: Initialize all onStartservice
+        _bootstrap.StartAsync<IResolver>(resolver =>
         {
             var services = resolver.ResolveMany<IOnStartService>();
             Parallel.ForEach(services, service => service.Initialize());

@@ -16,4 +16,9 @@ public static class Setup
     /// Instantiate and start a new configuration
     /// </summary>
     public static IBootstrap Using(IContainer container) => new Bootstrap(container);
+    
+    /// <summary>
+    /// Instantiate and start a new configuration with default container
+    /// </summary>
+    public static IBootstrap UsingContainer() => new Bootstrap(new Container());
 }

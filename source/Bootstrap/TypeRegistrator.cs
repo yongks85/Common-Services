@@ -25,19 +25,19 @@ internal class TypeRegistrator : ITypeRegistrator
 
     public IList<Type> SubTypesToRegister { get; } = new List<Type>();
 
-    public ITypeRegistrator Include<T>()
+    public void Include<T>()
     {
-        var modules = _allTypes.Where(type => typeof(T).IsAssignableFrom(type)
+        var classes = _allTypes.Where(type => typeof(T).IsAssignableFrom(type)
                                             && type.IsClass
                                             && !type.IsAbstract);
 
-        if (PublicClassesOnly) modules = modules.Where(type => type.IsPublic);
+        if (PublicClassesOnly) classes = classes.Where(type => type.IsPublic);
 
-        foreach (var module in modules)
+        foreach (var module in classes)
         {
             _container.Register(typeof(T), module, ObjectLifeCycle);
             if (IncludeRegistrationOfClassType) _container.Register(module, module, ObjectLifeCycle);
-            foreach(var subType in SubTypesToRegister.Where(st=> module.IsAssignableFrom(st)))
+            foreach(var subType in SubTypesToRegister.Where(st=> st.IsAssignableFrom(module)))
             {
                 _container.Register(subType, module, ObjectLifeCycle);
             }

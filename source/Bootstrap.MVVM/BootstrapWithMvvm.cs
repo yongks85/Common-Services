@@ -15,9 +15,18 @@ internal class BootstrapWithMvvm : IBootstrap
         _bootstrap = bootstrap;
     }
 
-    public void Start<T>(Func<T, Task>? executionAction = null)
+    public void Start<T>(Action<T>? executionAction = null)
     {
         _bootstrap.Start<IResolver>(resolver =>
+        {
+            Application.Current.Resources.Add("ViewModelLocator", resolver.Resolve<ViewModelLocator>());
+            executionAction?.Invoke(resolver.Resolve<T>());
+        });
+    }
+    
+    public void StartAsync<T>(Func<T, Task>? executionAction = null)
+    {
+        _bootstrap.StartAsync<IResolver>(resolver =>
         {
             Application.Current.Resources.Add("ViewModelLocator", resolver.Resolve<ViewModelLocator>());
             executionAction?.Invoke(resolver.Resolve<T>());

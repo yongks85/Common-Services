@@ -1,5 +1,3 @@
-using Bootstrap.Test.Mocks;
-
 using DryIoc;
 using FluentAssertions;
 
@@ -16,7 +14,6 @@ namespace Bootstrap.Test
                 .Start<IMockClass>(mock =>
                 {
                     mock.GetType().Should().Be(typeof(MockClass));
-                    return Task.CompletedTask;
                 });
         }
 
@@ -27,7 +24,7 @@ namespace Bootstrap.Test
             var container = new Container();
             Setup.Using(container)
                 .ScanAssembly<IMockAssemblyMarker>()
-                .Start<IAutoRegType>(mock =>
+                .StartAsync<IAutoRegType>(mock =>
                 {
                     mock.GetType().Should().Be(typeof(AutoA));
                     return Task.CompletedTask;

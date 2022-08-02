@@ -6,14 +6,64 @@ Often for desktop applications, it is done in hind sight resulting in hard to ma
 <br/>
 
 Using [DryIoc](https://github.com/dadhi/DryIoc) as the IoC container, bootstrapper helps by having
-- Modular registration declaration (To Doc)
-- Assembly scanning for registration (To Test, Doc)
+- Modular registration declaration
+- Assembly scanning for registration
 
-## How to use: TODO
-- Add reference of Bootstrap.Core to the executing project
-- For every project add reference to Bootstrap.Abstractions
-- Implement assembly marker and Module interface
-- Add registration to start up.
+<br/>
+
+## How to use:
+To allow adding registration and resolving the object to execute, start by adding the following to the start of program
+```csharp
+Setup.UsingContainer()
+    .Register(reg =>
+    {
+        reg.Register<SomeInterface, SomeClass>()
+    })
+    .Start<SomeInterface>(resolved => resolved.Run());
+```
+
+<br/>
+
+As your program increase in features and functionality, you can use the assembly scanning functionality. <br/>
+Start by adding a interface inheriting `IAssemblyMarker` in each project you wish the assembly scanning to happen.
+The scanning will register and classes created inheriting `IModule`
+
+```csharp
+Setup.UsingContainer()
+    .ScanAssembly<Bootstrap.SampleModule.ISampleAssemblyMarker>()
+    .Start<SomeInterface>(resolved => resolved.Run());
+
+internal class SampleModule : IModule
+{
+    public void Register(IRegistrator registrator)
+    {
+        registrator.Register<SomeInterface, SomeClass>();
+    }
+}
+
+public interface ISampleAssemblyMarker : IAssemblyMarker { }
+```
+
+<br/>
+
+You can add your own registrations of the same type as well as options control like so: <br/>
+*Note: This would not affect the `IModule` registration*
+```csharp
+ScanAssembly<Bootstrap.SampleModule.IMockAssemblyMarker>(typeReg =>
+{
+    typeReg.PublicClassesOnly = true;
+    typeReg.ObjectLifeCycle = Reuse.Singleton;
+    typeReg.IncludeRegistrationOfClassType = false;
+    typeReg.Include<CommonInterface>();
+})
+```
+
+Convenience method to add application exception handling can be done using `HookAppLevelExceptionHandling`. <br/>
+You can also start asynchronously by using `StartAsync<T>`
+
+<br/><br/>
+
+---
 
 ## Add ons
 Addons|Description
@@ -27,6 +77,3 @@ ArgParser (TODO) | Setup with [CommandLineParser](https://github.com/commandline
 Scoping (TODO) | Add Scopes handling in bootstrapper
 
 ---
-
-## To create your own extensions:
-TODO

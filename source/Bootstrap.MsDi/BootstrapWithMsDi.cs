@@ -18,8 +18,19 @@ internal class BootstrapWithMsDi : IBootstrap
         _bootstrap = bootstrap;
         _container = container;
     }
-
-    public void Start<T>(Func<T, Task> executionAction = null)
+    
+    public void Start<T>(Action<T>? executionAction = null)
+    {
+        Parallel.ForEach(_container.ResolveMany<IModule>(), module =>
+        {
+            var serviceCollection = new ServiceCollection();
+            module.Register(_container);
+            _container.Populate(serviceCollection);
+        });
+        executionAction?.Invoke(_container.Resolve<T>());
+    }
+    
+    public void StartAsync<T>(Func<T, Task> executionAction = null)
     {
         Parallel.ForEach(_container.ResolveMany<IModule>(), module =>
         {

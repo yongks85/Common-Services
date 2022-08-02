@@ -31,5 +31,11 @@ public interface IBootstrap
     /// Register all modules and Start the application
     /// </summary>
     /// <param name="executionAction"></param>
-    void Start<T>(Func<T, Task> executionAction = null);
+    void StartAsync<T>(Func<T, Task> executionAction = null);
+    
+    /// <summary>
+    /// Register all modules and Start the application
+    /// </summary>
+    /// <param name="executionAction"></param>
+    void Start<T>(Action<T> executionAction = null);
 }

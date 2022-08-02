@@ -34,6 +34,6 @@ public interface ITypeRegistrator
     /// <summary>
     /// Add type to register from assembly scanning. MUST BE NON ABSTRACT CLASS!
     /// </summary>
-    ITypeRegistrator Include<T>();
+    void Include<T>();
 
 }
