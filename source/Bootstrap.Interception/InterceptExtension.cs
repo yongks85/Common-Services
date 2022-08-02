@@ -22,7 +22,7 @@ public static class InterceptExtension
     /// <summary>
     /// Intercept particular class with particular interceptor
     /// </summary>
-    public static void Intercept<TInterceptor>(this IRegistrator registrator, 
+    public static void Intercept<TInterceptor>(this IRegistrator registrator,
         Type serviceType, object serviceKey = null) where TInterceptor : class, IInterceptor
     {
 
