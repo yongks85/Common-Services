@@ -3,19 +3,24 @@ using System.Threading.Tasks;
 using Bootstrap.Abstraction;
 using DryIoc;
 
-namespace Bootstrap.Decorators;
+namespace Bootstrap.MultiStart;
 
-internal class StartIntercept: IBootstrap
+internal class BootstrapWithMultiStart: IBootstrap
 {
-    private readonly PreLoads _preLoads = new();
     private readonly IBootstrap _bootstrap;
 
-    internal StartIntercept(IBootstrap bootstrap) => _bootstrap = bootstrap;
+    internal BootstrapWithMultiStart(IBootstrap bootstrap) => _bootstrap = bootstrap;
 
     public IBootstrap Register(Action<IRegistrator> registration) => _bootstrap.Register(registration);
 
-    public IBootstrap ScanAssembly<T>(Action<ITypeRegistrator> includeType = null) where T : IAssemblyMarker =>
-        _bootstrap.ScanAssembly<T>(includeType);
+    public IBootstrap ScanAssembly<T>(Action<ITypeRegistrator> includeType = null) where T : IAssemblyMarker
+    {
+        _bootstrap.ScanAssembly<T>(include =>
+        {
+            //todo: Regsiter all OnStartService
+        });
+        return this;
+    }
 
     public IBootstrap HookAppLevelExceptionHandling(
         Action<object, UnhandledExceptionEventArgs> handleException) =>
@@ -23,18 +28,13 @@ internal class StartIntercept: IBootstrap
 
     public void Start<T>(Func<T, Task> executionAction = null)
     {
+        //todo: Initialize all onStartservice
         _bootstrap.Start<IResolver>(resolver =>
         {
-            _preLoads.Execute(resolver);
+            var services = resolver.ResolveMany<IOnStartService>();
+            Parallel.ForEach(services, service => service.Initialize());
             executionAction?.Invoke(resolver.Resolve<T>());
             return Task.CompletedTask;
         });
     }
-    
-    public IBootstrap OnStart<T>(Action<T> whenStart)
-    {
-        _preLoads.Add(whenStart);
-        return this;
-    }
-    
 }

@@ -1,6 +1,10 @@
 ﻿using Bootstrap.Abstraction;
 using DryIoc;
 
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Bootstrap.Test")]
+
 namespace Bootstrap;
 
 /// <summary>

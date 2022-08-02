@@ -13,7 +13,7 @@ internal class BootstrapWithMsDi : IBootstrap
     private readonly IBootstrap _bootstrap;
     private readonly IContainer _container;
 
-    public BootstrapWithMsDi(IBootstrap bootstrap, IContainer container)
+    internal BootstrapWithMsDi(IBootstrap bootstrap, IContainer container)
     {
         _bootstrap = bootstrap;
         _container = container;

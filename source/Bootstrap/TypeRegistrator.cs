@@ -10,7 +10,7 @@ internal class TypeRegistrator : ITypeRegistrator
 {
     private readonly IContainer _container;
     private readonly Type[] _allTypes;
-    
+
     internal TypeRegistrator(IContainer container, Type[] allTypes)
     {
         _container = container;
@@ -18,9 +18,9 @@ internal class TypeRegistrator : ITypeRegistrator
     }
 
     public bool PublicClassesOnly { set; get; }
-    
+
     public bool IncludeRegistrationOfClassType { set; get; }
-    
+
     public IReuse ObjectLifeCycle { set; get; }
 
     public IList<Type> SubTypesToRegister { get; } = new List<Type>();
