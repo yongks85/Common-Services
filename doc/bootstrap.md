@@ -25,8 +25,8 @@ Setup.UsingContainer()
 <br/>
 
 As your program increase in features and functionality, you can use the assembly scanning functionality. <br/>
-Start by adding a interface inheriting `IAssemblyMarker` in each project you wish the assembly scanning to happen.
-The scanning will register and classes created inheriting `IModule`
+Start by adding a interface inheriting `IAssemblyMarker` in each project you wish the assembly scanning to happen. <br/>
+The scanning will register classes created inheriting `IModule`
 
 ```csharp
 Setup.UsingContainer()
@@ -61,19 +61,27 @@ ScanAssembly<Bootstrap.SampleModule.IMockAssemblyMarker>(typeReg =>
 Convenience method to add application exception handling can be done using `HookAppLevelExceptionHandling`. <br/>
 You can also start asynchronously by using `StartAsync<T>`
 
-<br/><br/>
+<br/>
 
 ---
 
 ## Add ons
+
 Addons|Description
 |--|--|
-Interception (To Test, Doc) | Wrapper of [Castle Dynamic Proxy AsyncInterceptor](https://github.com/JSkimming/Castle.Core.AsyncInterceptor) to allow easier interception registration
-Serilog (To Test, Doc) | Wrap with interception for implicit logging using [Serilog](https://serilog.net/)
+[Code Interception](#code-interception) | Wrapper of [Castle Dynamic Proxy AsyncInterceptor](https://github.com/JSkimming/Castle.Core.AsyncInterceptor) to allow easier interception registration
+Serilog (To Test, Doc) | Using code interception for implicit logging using [Serilog](https://serilog.net/)
 MsDi (To Test, Doc) | Extended with Microsoft Dependency Injection to use both at the same time
 MultiStart (WIP) | Allows starting of services on top of main execution
 MVVM (WIP) | Add MVVM toolkit registrations. <br/> Easier registration of views and viewModels
 ArgParser (TODO) | Setup with [CommandLineParser](https://github.com/commandlineparser/commandline)
 Scoping (TODO) | Add Scopes handling in bootstrapper
+
+<br/>
+
+### Code Interception
+[DryIoc code interception](https://github.com/dadhi/DryIoc/blob/master/docs/DryIoc.Docs/Interception.md) can be used by adding reference to Interception package and inherit `Interceptor` for your interception classes.
+You can see the code for Serilog on how to use the generic wrapper,
+
 
 ---

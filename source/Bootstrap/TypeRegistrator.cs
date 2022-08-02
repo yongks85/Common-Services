@@ -43,6 +43,5 @@ internal class TypeRegistrator : ITypeRegistrator
             }
 
         }
-        return this;
     }
 }

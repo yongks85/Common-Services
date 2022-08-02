@@ -13,7 +13,6 @@ Setup.Using(container)
         typeReg.PublicClassesOnly = true;
         typeReg.ObjectLifeCycle = Reuse.Singleton;
         typeReg.IncludeRegistrationOfClassType = false;
-        typeReg.Include<CommonInterface>();
     })
     .HookAppLevelExceptionHandling(ErrorHandling)
     .Start<SomeInterface>(resolved => resolved.Run());
