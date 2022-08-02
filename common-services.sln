@@ -23,19 +23,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootstrap.MultiStart", "sou
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{9BA9D1EA-99C5-4941-940B-62D7FDB51DF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap.SampleModule", "sample\Bootstrap.SampleModule\Bootstrap.SampleModule.csproj", "{87D79385-BA91-4E02-8269-AC1AEAE8D066}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootstrap.SampleModule", "sample\Bootstrap.SampleModule\Bootstrap.SampleModule.csproj", "{87D79385-BA91-4E02-8269-AC1AEAE8D066}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap.SampleConsole", "sample\Bootstrap.SampleConsole\Bootstrap.SampleConsole.csproj", "{53D5975C-E5BB-4EC9-9C77-E73C76DE5994}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootstrap.SampleConsole", "sample\Bootstrap.SampleConsole\Bootstrap.SampleConsole.csproj", "{53D5975C-E5BB-4EC9-9C77-E73C76DE5994}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap.SampleModule.UI", "sample\Bootstrap.SampleModule.UI\Bootstrap.SampleModule.UI.csproj", "{0F799E24-BCEE-4F76-9CA2-AC9ACB630F85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootstrap.SampleModule.UI", "sample\Bootstrap.SampleModule.UI\Bootstrap.SampleModule.UI.csproj", "{0F799E24-BCEE-4F76-9CA2-AC9ACB630F85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap.SampleWpf", "sample\Bootstrap.SampleWpf\Bootstrap.SampleWpf.csproj", "{D1DA6986-DD30-484C-BC68-516EAE748C41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootstrap.SampleWpf", "sample\Bootstrap.SampleWpf\Bootstrap.SampleWpf.csproj", "{D1DA6986-DD30-484C-BC68-516EAE748C41}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap.SampleUwp", "sample\Bootstrap.SampleUwp\Bootstrap.SampleUwp.csproj", "{1D66093C-897B-4CB3-B6CF-31FBE7B26212}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap.SampleAndorid", "sample\Bootstrap.SampleAndorid\Bootstrap.SampleAndorid.csproj", "{1A637CFD-5583-44AC-8CB5-94575AE898C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootstrap.SampleAndorid", "sample\Bootstrap.SampleAndorid\Bootstrap.SampleAndorid.csproj", "{1A637CFD-5583-44AC-8CB5-94575AE898C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap.ArgParser", "source\Bootstrap.ArgParser\Bootstrap.ArgParser.csproj", "{F8091B5A-DBE2-4516-9904-7C22E58E7317}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootstrap.ArgParser", "source\Bootstrap.ArgParser\Bootstrap.ArgParser.csproj", "{F8091B5A-DBE2-4516-9904-7C22E58E7317}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{5C469DF2-96EE-48ED-9759-F4E57863A289}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "source\DataAccess\DataAccess.csproj", "{E9A67545-F125-40A1-87FE-3E5BE9533CD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -361,6 +365,26 @@ Global
 		{F8091B5A-DBE2-4516-9904-7C22E58E7317}.Release|x64.Build.0 = Release|Any CPU
 		{F8091B5A-DBE2-4516-9904-7C22E58E7317}.Release|x86.ActiveCfg = Release|Any CPU
 		{F8091B5A-DBE2-4516-9904-7C22E58E7317}.Release|x86.Build.0 = Release|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Debug|ARM.Build.0 = Debug|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Debug|x64.Build.0 = Debug|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Debug|x86.Build.0 = Debug|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Release|ARM.Build.0 = Release|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Release|ARM64.Build.0 = Release|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Release|x64.ActiveCfg = Release|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Release|x64.Build.0 = Release|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Release|x86.ActiveCfg = Release|Any CPU
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -382,6 +406,7 @@ Global
 		{1D66093C-897B-4CB3-B6CF-31FBE7B26212} = {9BA9D1EA-99C5-4941-940B-62D7FDB51DF8}
 		{1A637CFD-5583-44AC-8CB5-94575AE898C2} = {9BA9D1EA-99C5-4941-940B-62D7FDB51DF8}
 		{F8091B5A-DBE2-4516-9904-7C22E58E7317} = {CBCC11E4-144D-437A-AF2D-4329938D651D}
+		{E9A67545-F125-40A1-87FE-3E5BE9533CD9} = {5C469DF2-96EE-48ED-9759-F4E57863A289}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E95E8497-C330-4E12-B89B-010B851159AA}
