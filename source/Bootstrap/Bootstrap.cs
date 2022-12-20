@@ -8,7 +8,7 @@ namespace Bootstrap;
 internal class Bootstrap : IBootstrap
 {
     private readonly IContainer _container;
-   
+
     internal Bootstrap(IContainer container)
     {
         _container = container;
@@ -29,28 +29,30 @@ internal class Bootstrap : IBootstrap
         includeType?.Invoke(typeInclude);
         return this;
     }
-        
+
     public IBootstrap HookAppLevelExceptionHandling(Action<object, UnhandledExceptionEventArgs> handleException)
     {
         AppDomain.CurrentDomain.UnhandledException += (sender, arg) => handleException(sender, arg);
         return this;
     }
 
-    public void StartAsync<T>(Func<T, Task> executionAction = null)
+    public async Task StartAsync<T>(Func<T, Task> executionAction)
     {
         Parallel.ForEach(_container.ResolveMany<IModule>(), module =>
         {
             module.Register(_container);
         });
-        executionAction?.Invoke(_container.Resolve<T>());
+        await executionAction(_container.Resolve<T>());
     }
-    
-    public void Start<T>(Action<T>? executionAction = null)
+
+    public void Start<T>(Action<T> executionAction)
     {
         Parallel.ForEach(_container.ResolveMany<IModule>(), module =>
         {
             module.Register(_container);
         });
-        executionAction?.Invoke(_container.Resolve<T>());
+
+        if (executionAction == null) return;
+        executionAction(_container.Resolve<T>());
     }
 }

@@ -8,7 +8,7 @@ namespace Bootstrap.Abstraction;
 /// <summary>
 /// Application Bootstrapper Builder
 /// </summary>
-public interface IBootstrap 
+public interface IBootstrap
 {
     /// <summary>
     /// For loose or custom registration
@@ -16,7 +16,7 @@ public interface IBootstrap
     IBootstrap Register(Action<IRegistrator> registration);
 
     /// <summary>
-    /// Scan the assembly of <see cref="IAssemblyMarker"/> and add registration of <see cref="IModule"/> 
+    /// Scan the assembly of <see cref="IAssemblyMarker"/> and add registration of <see cref="IModule"/>
     /// </summary>
     /// <param name="includeType">Any other type signature in assembly to register</param>
     /// <typeparam name="T">Assembly Marker type</typeparam>
@@ -31,11 +31,11 @@ public interface IBootstrap
     /// Register all modules and Start the application
     /// </summary>
     /// <param name="executionAction"></param>
-    void StartAsync<T>(Func<T, Task> executionAction = null);
-    
+    Task StartAsync<T>(Func<T, Task> executionAction);
+
     /// <summary>
     /// Register all modules and Start the application
     /// </summary>
     /// <param name="executionAction"></param>
-    void Start<T>(Action<T> executionAction = null);
+    void Start<T>(Action<T> executionAction);
 }
